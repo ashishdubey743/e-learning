@@ -1,12 +1,14 @@
 <?php
 
 use App\Livewire\Forms\LoginForm;
-use Illuminate\Support\Facades\Session;
+use App\Models\User;
+use Illuminate\Support\Facades\{Auth, Hash, Session};
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
 
-new #[Layout('layouts.guest')] class extends Component
-{
+new #[Layout('layouts.guest')] class extends Component {
     public LoginForm $form;
     public string $selectedTab = 'login-form';
     public string $name = '';
@@ -21,7 +23,7 @@ new #[Layout('layouts.guest')] class extends Component
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -44,7 +46,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="mb-4" :status="session('status')"/>
     <x-mary-tabs
         wire:model="selectedTab"
         active-class="bg-primary rounded text-white"
@@ -98,13 +100,15 @@ new #[Layout('layouts.guest')] class extends Component
                 </div>
                 <div class="flex items-center justify-between">
                     @if (Route::has('password.request'))
-                        <a href="{{ route('login') }}" class="text-sm text-indigo-600 hover:text-indigo-800 whitespace-nowrap"
+                        <a href="{{ route('login') }}"
+                           class="text-sm text-indigo-600 hover:text-indigo-800 whitespace-nowrap"
                            wire:navigate>Already registered?</a>
                     @endif
-                        <div class="grid justify-end w-full">
-                            <x-mary-button type="submit" label="Register" class="w-full btn-primary py-2 mt-3 rounded-md shadow-sm"
-                                           spinner="register"/>
-                        </div>
+                    <div class="grid justify-end w-full">
+                        <x-mary-button type="submit" label="Register"
+                                       class="w-full btn-primary py-2 mt-3 rounded-md shadow-sm"
+                                       spinner="register"/>
+                    </div>
                 </div>
             </form>
         </x-mary-tab>
