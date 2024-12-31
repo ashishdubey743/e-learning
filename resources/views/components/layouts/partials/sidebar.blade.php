@@ -29,7 +29,8 @@
                 <x-mary-icon x-show="collapsed" name="o-bars-3" />
                 <x-mary-icon x-show="!collapsed" name="o-chevron-double-left" />
             </x-mary-menu-item>
-            <x-mary-menu-item title="Home" icon="o-home" link="" />
+
+            <x-mary-menu-item title="Home" icon="o-home" link="{{ route('home') }}" route="home" />
             <x-mary-menu-sub title="Users" icon="o-user" >
                 <x-mary-menu-item title="Browse User" icon="o-document-text" link="" />
             </x-mary-menu-sub>
