@@ -19,7 +19,7 @@
     <x-slot:actions>
         <x-mary-dropdown>
             <x-slot:trigger>
-                <x-mary-button icon="o-user" class="btn btn-circle btn-outline" />
+                <x-mary-button icon="o-user" class="hover:!bg-primary btn btn-circle btn-outline" />
             </x-slot:trigger>
             {{-- Menu Items --}}
             <x-mary-menu-item link="" icon="o-user" title="Edit Profile" class="hover:bg-primary hover:text-primary-content" />

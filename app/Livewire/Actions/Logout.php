@@ -10,11 +10,12 @@ class Logout
     /**
      * Log the current user out of the application.
      */
-    public function __invoke(): void
+    public function __invoke(): \Illuminate\Http\RedirectResponse
     {
         Auth::guard('web')->logout();
 
         Session::invalidate();
         Session::regenerateToken();
+        return redirect()->route('login');
     }
 }

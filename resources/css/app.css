@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav {
+    > div:first-child {
+        @apply py-1;
+    }
+
+    #sidebarToggleElement {
+        @apply mr-7;
+    }
+
+    .btn {
+        @apply hover:bg-secondary hover:border-transparent hover:text-secondary-content;
+    }
+
+    .swap {
+        @apply bg-transparent border-none;
+    }
+}
+
+/* Sidebar height fix */
+div:has(> .sidebar) {
+    @apply lg:top-[56px] lg:h-[calc(100vh-56px)];
+
+    .sidebar {
+        @apply h-screen lg:h-[calc(100vh-56px)];
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    @apply border-r-2 dark:border-transparent border-base-200;
+
+    /* Apply active to menu item */
+    .menu {
+        li {
+            > a:hover,
+            > details > summary:hover,
+            > details:has(.mary-active-menu):not([open]) summary,
+            > a.mary-active-menu {
+                @apply bg-primary text-neutral-content;
+            }
+
+            > a:focus,
+            > details summary:focus {
+                @apply !bg-primary text-neutral-content;
+            }
+        }
+
+        details:has(.mary-active-menu) > summary,
+        &:hover .mary-active-menu:not(:hover),
+        &:hover details:has(.mary-active-menu) > summary:not(:hover),
+        &:focus-within .mary-active-menu:not(:focus-within),
+        &:focus-within
+        details:has(.mary-active-menu)
+        > summary:not(:focus-within) {
+            @apply bg-base-200 dark:bg-base-100 text-inherit;
+        }
+    }
+
+    & .collapsed {
+        .menu li > details:has(.mary-active-menu) summary {
+            @apply bg-primary text-neutral-content;
+        }
+    }
+}
