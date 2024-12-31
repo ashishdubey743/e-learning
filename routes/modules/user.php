@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'dashboard')
@@ -9,3 +10,6 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+Route::middleware(['auth'])->group(function () {
+    Route::post('logout', Logout::class)->name('logout');
+});
