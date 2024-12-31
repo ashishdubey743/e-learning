@@ -83,7 +83,7 @@ new #[Layout('layouts.guest')] class extends Component {
         <x-mary-tab name="register-form" label="Register">
             <form wire:submit="register">
                 <div>
-                    <x-mary-input wire:model="name" label="Name" icon="o-envelope"
+                    <x-mary-input wire:model="name" label="Name" icon="o-identification"
                                   class="w-full px-4 py-2 border  rounded-md shadow-sm " inline/>
                 </div>
                 <div class="mt-4">
@@ -95,7 +95,7 @@ new #[Layout('layouts.guest')] class extends Component {
                                      class="w-full px-4 py-2 border rounded-md shadow-sm " inline/>
                 </div>
                 <div class="mt-4">
-                    <x-mary-password wire:model="password_confirmation" label="Password" icon="o-key" right
+                    <x-mary-password wire:model="password_confirmation" label="Confirm Password" icon="o-key" right
                                      class="w-full px-4 py-2 border rounded-md shadow-sm " inline/>
                 </div>
                 <div class="flex items-center justify-between">
